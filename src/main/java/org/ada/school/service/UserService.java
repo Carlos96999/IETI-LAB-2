@@ -2,7 +2,6 @@ package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
 import org.ada.school.repository.UserDocument;
-
 import java.util.List;
 import java.util.Optional;
 

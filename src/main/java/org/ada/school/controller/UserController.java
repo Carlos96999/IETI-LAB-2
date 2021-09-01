@@ -30,7 +30,6 @@ public class UserController
         this.userService = userService;
     }
 
-
     @GetMapping
     public ResponseEntity<List<UserDocument>> all()
     {
@@ -42,7 +41,6 @@ public class UserController
     {
         return userService.findById( id );
     }
-
 
     @PostMapping
     public ResponseEntity<UserDocument> create( @RequestBody UserDto userDto )
