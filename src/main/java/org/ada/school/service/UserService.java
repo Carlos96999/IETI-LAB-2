@@ -1,16 +1,16 @@
 package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
-import org.ada.school.model.User;
 import org.ada.school.repository.UserDocument;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService
 {
     UserDocument create(UserDocument userDocument );
 
-    UserDocument findById( String id );
+    Optional<UserDocument> findById(String id );
 
     List<UserDocument> all();
 

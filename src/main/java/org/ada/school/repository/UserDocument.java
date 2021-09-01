@@ -32,7 +32,13 @@ public class UserDocument
         name = userDto.getName();
         lastName = userDto.getLastName();
         email = userDto.getEmail();
+    }
 
+    public void update(UserDto userDto)
+    {
+        name = userDto.getName();
+        lastName = userDto.getLastName();
+        email = userDto.getEmail();
     }
 }
 

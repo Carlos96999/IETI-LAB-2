@@ -1,12 +1,12 @@
 package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
-import org.ada.school.model.User;
 import org.ada.school.repository.UserDocument;
 import org.ada.school.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceMongoDB implements UserService
@@ -22,29 +22,44 @@ public class UserServiceMongoDB implements UserService
     @Override
     public UserDocument create(UserDocument userDocument )
     {
-        return new UserDocument();
+        return userRepository.save(userDocument);
     }
 
     @Override
-    public UserDocument findById( String id )
+    public Optional<UserDocument> findById(String id )
     {
-        return null;
+        return userRepository.findById(id);
     }
 
     @Override
     public List<UserDocument> all()
     {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public boolean deleteById( String id )
     {
-        return false;
+        boolean answer = false;
+
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            answer = true;
+        }
+
+        return answer;
     }
 
     @Override
     public UserDocument update(UserDto userDto, String id) {
-        return null;
+        UserDocument userDocument = null;
+
+        if (userRepository.existsById(id))
+        {
+            userDocument = userRepository.findById(id).get();
+            userDocument.update(userDto);
+            userRepository.save(userDocument);
+        }
+        return userDocument;
     }
 }
